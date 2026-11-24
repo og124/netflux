@@ -1,0 +1,18 @@
+# Copy to netflux.yaml, then: netflux run -config netflux.yaml
+git:
+  url: https://github.com/og124/netflux.git
+  branch: main
+  path: examples/lab              # holds inventory.yaml
+  token_env: GITHUB_TOKEN
+  author: netflux <netflux@users.noreply.github.com>
+
+# Optional: open PRs for drift branches.
+github:
+  repo: og124/netflux
+  token_env: GITHUB_TOKEN         # contents:write, pull-requests:write
+
+state_dir: .netflux/state
+workdir: .netflux/checkout
+listen: 127.0.0.1:8080
+poll: 15s                         # git fetch interval
+resync: 30s                       # device re-read interval

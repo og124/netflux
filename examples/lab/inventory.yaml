@@ -1,0 +1,40 @@
+# The cEOS leaves from github.com/og124/ceos-gnmi-lab:
+#
+#   leaf1 ─── Ethernet1 ── 10.10.10.0/30 ── Ethernet1 ─── leaf2
+#   AS 65001, Lo0 10.0.0.1                    AS 65002, Lo0 10.0.0.2
+#
+# `make demo` overrides the addresses to point at simulated leaves.
+
+defaults:
+  username: admin
+  password_env: NETFLUX_PASSWORD
+  insecure: true                   # plaintext gRPC, the cEOS default
+  mode: pr
+  groups: [all, leaves]
+
+  # Owned by netflux and replaced wholesale; everything else is untouched.
+  roots:
+    - /system/config
+    - /system/dns
+    - /system/ntp
+    - /interfaces
+    - /lldp
+    - /routing-policy
+    - /network-instances/network-instance[name=default]/vlans
+    - /network-instances/network-instance[name=default]/table-connections
+    - /network-instances/network-instance[name=default]/protocols/protocol[identifier=BGP][name=BGP]
+
+  # Device-owned; copied from the live device into every replace.
+  preserve:
+    - /interfaces/interface[name=Management*]
+    - /network-instances/network-instance[name=default]/vlans/vlan[vlan-id=1]
+
+  # Excluded from drift detection.
+  ignore: []
+
+devices:
+  leaf1:
+    address: ${LEAF1_ADDR:-172.20.20.11:6030}
+    mode: strict
+  leaf2:
+    address: ${LEAF2_ADDR:-172.20.20.12:6030}

@@ -1,0 +1,15 @@
+version: "2"
+linters:
+  settings:
+    errcheck:
+      # Nothing useful to do with these errors.
+      exclude-functions:
+        - fmt.Fprint
+        - fmt.Fprintf
+        - fmt.Fprintln
+        - (io.Closer).Close
+        - (*os.File).Close
+        - (net.Listener).Close
+        - (*net/http.Server).Close
+        - (*github.com/og124/netflux/internal/device.Client).Close
+        - os.RemoveAll

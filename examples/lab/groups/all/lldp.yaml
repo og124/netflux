@@ -1,0 +1,3 @@
+lldp:
+  config:
+    enabled: true

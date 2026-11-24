@@ -1,0 +1,34 @@
+network-instances:
+  network-instance:
+    - name: default
+      protocols:
+        protocol:
+          - identifier: openconfig-policy-types:BGP
+            name: BGP
+            config:
+              identifier: openconfig-policy-types:BGP
+              name: BGP
+            bgp:
+              global:
+                config:
+                  as: 65001
+                  router-id: 10.0.0.1
+                afi-safis:
+                  afi-safi:
+                    - afi-safi-name: openconfig-bgp-types:IPV4_UNICAST
+                      config:
+                        afi-safi-name: openconfig-bgp-types:IPV4_UNICAST
+                        enabled: true
+              neighbors:
+                neighbor:
+                  - neighbor-address: 10.10.10.2
+                    config:
+                      neighbor-address: 10.10.10.2
+                      peer-as: 65002
+                      description: leaf2
+                    afi-safis:
+                      afi-safi:
+                        - afi-safi-name: openconfig-bgp-types:IPV4_UNICAST
+                          config:
+                            afi-safi-name: openconfig-bgp-types:IPV4_UNICAST
+                            enabled: true

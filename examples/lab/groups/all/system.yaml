@@ -1,0 +1,24 @@
+system:
+  config:
+    domain-name: lab.example.net
+    login-banner: |
+      This switch is managed by netflux from git. Changes made here are drift:
+      they will be reverted, or proposed back to git as a pull request.
+  dns:
+    servers:
+      server:
+        - address: 1.1.1.1
+          config:
+            address: 1.1.1.1
+        - address: 9.9.9.9
+          config:
+            address: 9.9.9.9
+  ntp:
+    config:
+      enabled: true
+    servers:
+      server:
+        - address: time.cloudflare.com
+          config:
+            address: time.cloudflare.com
+            iburst: true

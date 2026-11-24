@@ -1,0 +1,7 @@
+# Only what OpenConfig can't express. Applied after OpenConfig; not drift-checked.
+
+- reason: >
+    EOS's anycast gateway (VARP, `ip virtual-router mac-address`) has no
+    OpenConfig model. OpenConfig only covers VRRP, which is a different protocol.
+  origin: cli
+  value: ip virtual-router mac-address 00:1c:73:00:00:99
